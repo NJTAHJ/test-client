@@ -4,6 +4,6 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
-  "postStartCommand": "docker start chromium 2>/dev/null || docker run -d --name=chromium -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e CHROME_CLI='https://discord.com/app https://www.instagram.com https://www.tiktok.com' -p 3000:3000 -p 3001:3001 -v \"$HOME/.chromium-data:/config\" --security-opt seccomp=unconfined --shm-size='2gb' --restart unless-stopped lscr.io/linuxserver/chromium:latest",
+  "postStartCommand": "docker start chromium 2>/dev/null || docker run -d --name=chromium -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e CHROME_CLI='https://discord.com/app https://www.instagram.com https://www.tiktok.com' -p 3000:3000 -p 3001:3001 -v \"/workspaces/.chromium-data:/config\" --security-opt seccomp=unconfined --shm-size='2gb' --restart unless-stopped lscr.io/linuxserver/chromium:latest",
   "forwardPorts": [3000]
 }
