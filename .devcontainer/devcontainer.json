@@ -4,6 +4,6 @@
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
   },
-  "postStartCommand": "docker start chromium 2>/dev/null || docker run -d --name=chromium -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e CHROME_CLI='https://discord.com/app https://www.instagram.com https://www.tiktok.com' -p 3000:3000 -p 3001:3001 -v chromium_profile:/config --security-opt seccomp=unconfined --shm-size='2gb' --restart unless-stopped lscr.io/linuxserver/chromium:latest",
+  "postStartCommand": "HOST_DIR=$(docker inspect $(hostname) --format '{{range .Mounts}}{{if eq .Destination \"/workspaces\"}}{{.Source}}{{end}}{{end}}' 2>/dev/null); DATA_PATH=${HOST_DIR:+$HOST_DIR/test-client/.chromium-data}; DATA_PATH=${DATA_PATH:-/workspaces/test-client/.chromium-data}; mkdir -p /workspaces/test-client/.chromium-data && (docker start chromium 2>/dev/null || docker run -d --name=chromium -e PUID=1000 -e PGID=1000 -e TZ=Etc/UTC -e CHROME_CLI='https://discord.com/app https://www.instagram.com https://www.tiktok.com' -p 3000:3000 -p 3001:3001 -v \"$DATA_PATH:/config\" --security-opt seccomp=unconfined --shm-size='2gb' --restart unless-stopped lscr.io/linuxserver/chromium:latest)",
   "forwardPorts": [3000]
 }
