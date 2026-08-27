@@ -1,2 +1,4 @@
 .chromium-data
-browser-profile.tar.gz
+*.tar.gz
+*.log
+.DS_Store
